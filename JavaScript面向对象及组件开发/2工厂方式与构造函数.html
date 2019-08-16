@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>2工厂方式与构造函数</title>
+		<script type="text/javascript">
+			//当NEW调用一个函数:这个时候函数中的this就是创建出来的对象,而且函数的返回值直接就是this(隐式返回)
+			//new后面调用的函数:叫构造函数
+			window.onload = function(){
+				function CreatPerson(name){
+					this.name = name;
+					this.nameShow = function(){
+						alert(this.name);
+					};
+				}
+				// creatPerson('小强').nameShow();
+				// creatPerson('小明').nameShow();
+				
+				//也可以这样写
+				var p1 = new CreatPerson('小强');
+				p1.nameShow();
+				var p2 = new CreatPerson('小明');
+			    p2.nameShow();
+				
+				var arr = new Array();  //数组的构造函数
+				var data = new Data();  //时间的构造函数
+			}
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

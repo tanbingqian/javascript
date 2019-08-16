@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>面向对象的基本写法和组成</title>
+		<script type="text/javascript">
+			window.onload = function(){
+				let obj = new Object();  //创建一个空对象
+				obj.name = "tanbingqian";  //属性
+				obj.age = "30";
+				obj.ageShow = function(){  //方法
+					alert(this.age); //this指的是obj
+				}
+				obj.ageShow();  //调用 如果这里没有obj的话,this指向window
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
