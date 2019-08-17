@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>控制多个选项卡自动播放</title>
+		<style type="text/css">
+			#div1 div,#div2 div{width:200px;height:200px;border:1px solid #ccc;display: none;}
+			.active{background-color: #008000;}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var t1 = new Tab('div1');
+				t1.init();
+				
+				var t2 = new Tab('div2');
+				t2.init();
+				t2.autoPlay();
+			}
+			function Tab(id){
+				this.oParent = document.getElementById(id);
+				this.inputs = this.oParent.getElementsByTagName('input');
+				this.adiv = this.oParent.getElementsByTagName('div');
+				this.iNow =0;
+			}
+			Tab.prototype.init=function(){
+				var This=this;
+				for(var i=0;i<this.inputs.length;i++){
+					this.inputs[i].index=i;
+					this.inputs[i].onclick=function(){
+						This.change(this);
+					};
+				}
+			}
+			Tab.prototype.change=function(obj){
+				for(var i=0;i<this.inputs.length;i++){
+					this.inputs[i].className='';
+					this.adiv[i].style.display='';
+				}
+				obj.className = 'active'
+				this.adiv[obj.index].style.display='block'
+			}
+			//自动播放
+			Tab.prototype.autoPlay=function(){
+				var This=this;
+				setInterval(function(){
+					if(This.iNow == This.inputs.length-1){
+						This.iNow = 0;
+					}else{
+						This.iNow ++
+					}
+					for(var i=0;i<This.inputs.length;i++){
+						This.inputs[i].className='';
+						This.adiv[i].style.display='';
+					}
+					This.inputs[This.iNow].className = 'active'
+					This.adiv[This.iNow].style.display='block'
+				},2000);
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="div1"> 
+			<input type="button" value="1" class="active"/>
+			<input type="button" value="2"/>
+			<input type="button" value="3"/>
+			<div style="display: block;">111</div>
+			<div>22</div>
+			<div>33</div>
+		</div>
+		<div id="div2"> 
+			<input type="button" value="1" class="active"/>
+			<input type="button" value="2"/>
+			<input type="button" value="3"/>
+			<div style="display: block;">111</div>
+			<div>22</div>
+			<div>33</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>传统的过程式编程写选项卡</title>
+		<style type="text/css">
+			#div1 div{width:200px;height:200px;border:1px solid green;display: none;}
+			#div1 input{border:none;border:1px solid rosybrown;}
+			.active{background-color: aquamarine;}
+		</style>
+		<script type="text/javascript">
+			// window.onload = function(){
+			// 	var oParent = document.getElementById('div1');
+			// 	var aInput = oParent.getElementsByTagName('input');
+			// 	var adiv = oParent.getElementsByTagName('div')
+			// 	
+			// 	for(var i=0; i<aInput.length;i++){
+			// 		aInput[i].index = i;
+			// 		aInput[i].onclick=function(){
+			// 			for(var i=0;i<aInput.length;i++){
+			// 				aInput[i].className = '';
+			// 				adiv[i].style.display = 'none';
+			// 			}
+			// 			this.className = 'active';
+			// 			adiv[this.index].style.display = 'block';
+			// 		}
+			// 	}
+			// }
+			
+			//先变形
+			//尽量不要出现函数嵌套函数
+			//可以有全局变量
+			var oParent = null;
+			var aInput = null;
+			var adiv = null;
+			window.onload = function(){
+				oParent = document.getElementById('div1');
+				aInput = oParent.getElementsByTagName('input');
+				adiv = oParent.getElementsByTagName('div')
+				
+				this.init();
+			}
+			function init(){
+				for(var i=0; i<aInput.length;i++){
+					aInput[i].index = i;
+					aInput[i].onclick= box;
+				}
+			}
+			function box(){
+				for(var i=0;i<aInput.length;i++){
+					aInput[i].className = '';
+					adiv[i].style.display = 'none';
+				}
+				this.className = 'active';
+				adiv[this.index].style.display = 'block';
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1">
+			<input  class="active" type="button" value="得到"/>
+			<input type="button" value="你们"/>
+			<input type="button" value="的爱"/>
+			<div style="display: block;">1</div>
+			<div>2</div>
+			<div>3</div>
+		</div>
+		
+</html>

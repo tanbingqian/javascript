@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>用面向对象封装选项卡</title>
+		<style type="text/css">
+			#div1 div{width:200px;height:200px;border:1px solid #ccc;display: none;}
+			.active{background-color: #008000;}
+		</style>
+		<script type="text/javascript">
+			/*
+			var oParent=null;
+			var inputs=null;
+			var adiv=null;
+			window.onload=function(){
+				oParent = document.getElementById('div1');
+				inputs = oParent.getElementsByTagName('input');
+				adiv = oParent.getElementsByTagName('div');
+				this.init();
+			}
+			function init(){
+				for(var i=0;i<inputs.length;i++){
+					inputs[i].index=i;
+					inputs[i].onclick=change;
+				}
+			}
+			function change(){
+				for(var i=0;i<inputs.length;i++){
+					inputs[i].className='';
+					adiv[i].style.display='';
+				}
+				this.className = 'active'
+				adiv[this.index].style.display='block'
+			}*/
+			
+			//改成面向对象
+			//全局变量就是属性
+			//函数就是方法
+			//Onload中创建对象
+			//this指向问题:事件或者是定时器,尽量让面向对象中的this指向对象
+			window.onload=function(){
+				var t1 = new Tab();
+				t1.init();
+			}
+			function Tab(){
+				this.oParent = document.getElementById('div1');
+				this.inputs = this.oParent.getElementsByTagName('input');
+				this.adiv = this.oParent.getElementsByTagName('div');
+			}
+			Tab.prototype.init=function(){
+				var This=this;
+				for(var i=0;i<this.inputs.length;i++){
+					this.inputs[i].index=i;
+					this.inputs[i].onclick=function(){
+						This.change(this);
+					};
+				}
+			}
+			Tab.prototype.change=function(obj){
+				for(var i=0;i<this.inputs.length;i++){
+					this.inputs[i].className='';
+					this.adiv[i].style.display='';
+				}
+				obj.className = 'active'
+				this.adiv[obj.index].style.display='block'
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="div1"> 
+			<input type="button" value="1" class="active"/>
+			<input type="button" value="2"/>
+			<input type="button" value="3"/>
+			<div style="display: block;">111</div>
+			<div>22</div>
+			<div>33</div>
+		</div>
+	</body>
+</html>
