@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js基于原型的程序</title>
+		<script type="text/javascript">
+			//在js源码 : 系统对象也是基于原型的程序
+			// function Array(){
+			// 	this.length=0;
+			// }
+			// Array.prototype.push=function(){}
+			// Array.prototype.sort=function(){}
+			
+			
+			var arr=[1,2,3];
+			Array.prototype.push=function(){
+				//arguments是实参的集合
+				for(var i=0;i<arguments.length;i++){
+					this[this.length]=arguments[i]
+				}
+				return this.length;
+			}
+			arr.push(4,5,6);
+			alert(arr);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>json中根据子id查找父id</title>
+</head>
+
+<body>
+  <script>
+    function getParentIds(data, id) {
+      id = "" + id;
+      for (var i in data) {
+        if (data[i].uid === id) {
+          return [id];
+        }
+        if (data[i].children) {
+          var ro = getParentIds(data[i].children, id);
+          if (ro !== undefined) {
+            ro.unshift(data[i].uid);
+            return ro;
+          }
+        }
+      }
+    }
+    // 联级选择器数据
+    let data = [{
+      "uid": "226669095742681088",
+      "parentId": "0",
+      "icon": ["product_image/4f81ab75-545b-4e4b-c46c-696e98fd332c.jpg"],
+      "children": [{
+        "uid": "226669392489682222",
+        "parentId": "226669095742681088",
+        "icon": [""],
+        "children": [],
+        "categoryName": "机器一"
+      }, {
+        "uid": "226669433526759424",
+        "parentId": "226669095742681088",
+        "icon": [""],
+        "children": [],
+        "categoryName": "机器二"
+      }, {
+        "uid": "226669488853823488",
+        "parentId": "226669095742681088",
+        "icon": [""],
+        "children": [],
+        "categoryName": "机器三"
+      }],
+      "categoryName": "机器"
+    }, {
+      "uid": "226669341591810048",
+      "parentId": "0",
+      "icon": ["product_image/905bb58e-921e-42be-9795-d3c480e9c5ac.jpeg"],
+      "children": [{
+        "uid": "227104375261995008",
+        "parentId": "226669341591810048",
+        "icon": [""],
+        "children": [],
+        "categoryName": "设备一"
+      }, {
+        "uid": "227114892152119296",
+        "parentId": "226669341591810048",
+        "icon": ["product_image/e4f3fb87-d073-4f01-a3e7-8ac260e2a843.jpg"],
+        "children": [{
+          "uid": "226669392489683333",
+          "parentId": "227114892152119296",
+          "icon": [""],
+          "children": [],
+          "categoryName": "机器一"
+        }],
+        "categoryName": "设备二"
+      }],
+      "categoryName": "设备"
+    }]
+    // 后端仅返回最后一个选中的子id
+    let id = '226669392489683333'
+    console.log(getParentIds(data, id))
+  </script>
+</body>
+
+</html>
