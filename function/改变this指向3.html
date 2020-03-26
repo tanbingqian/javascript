@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>改变this指向-bing</title>
+    <script>
+       function fn(){
+           console.log(arguments)
+           console.log(this)
+       }
+       //bind(指向的位置)
+       console.log(fn.bind(document))
+       //bing本身不会执行函数，会返回一个新的函数体
+       //返回的函数是一个新的函数 bind会将新的函数下this指向改变
+       //和call/apply区别
+         //1.bind是一个方法，执行完毕之后会返回一个新的函数
+         //2.call/apply会立即调用函数本身
+         //3.bind返回的是一个新的函数，改变的是新函数下的this指向
+         console.log(newFn==fn)  //false
+       var newFn=fn.bind(document)
+       newFn(1,2,3,4);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
