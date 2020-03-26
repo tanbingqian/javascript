@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>switch语句-穿透，break更新</title>
+</head>
+<body>
+    <div>
+        <input type="text"/>
+        <button>点我</button>
+    </div>
+    <script>
+        /**
+         * 穿透：
+         * 找到对应的匹配项之后，从该匹配项执行，一直到代码的结束
+          * **/
+
+      var txt= document.querySelector('input')
+      var button = document.querySelector('button')
+
+      window.onload = function () {
+        button.onclick=function(){
+          var value = txt.value
+          switch(value){
+            case '1':
+              console.log("星期一")
+              break
+            case '2':
+              console.log('星期二')
+              break
+            case '3':
+              console.log('星期三')
+              break
+            case '4':
+              console.log('星期四')
+              break
+            case '5':
+              console.log("星期五")
+              break
+            case '6':
+              console.log('星期六')
+              break
+            case '7':
+              console.log('星期天')
+              break
+            default:
+              console.log('输入错误')
+          }
+        } 
+      }
+    </script>
+</body>
+</html>

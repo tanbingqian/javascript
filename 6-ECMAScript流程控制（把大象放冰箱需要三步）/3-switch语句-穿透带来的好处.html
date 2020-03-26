@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3-switch语句-穿透带来的好处</title>
+</head>
+<body>
+    <div>
+        <input type="text"/>
+        <button>点我</button>
+    </div>
+    <script>
+        /**
+         * 1-5  周一 - 周五
+         * 6-7  周六 - 周日
+          * **/ 
+
+      var txt= document.querySelector('input')
+      var button = document.querySelector('button')
+
+      window.onload = function () {
+        button.onclick=function(){
+          var value = txt.value
+          switch(value){
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+              console.log("周一到周五工作日")
+              break
+            case '6':
+            case '7':
+              console.log('周末休息')
+              break
+            default:
+              console.log('输入错误')
+          }
+        } 
+      }
+    </script>
+</body>
+</html>

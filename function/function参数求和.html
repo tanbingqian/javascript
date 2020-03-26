@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>function-参数求和</title>
+    <script>
+      var fn = function (){
+          //取第一个值
+        //   console.log(arguments[0])
+          //取最后一个值
+        //   console.log(arguments[arguments.length-1])
+
+          //求实参总和
+          var result = 0;
+          for(var i=0; i<arguments.length; i++){
+             result+=arguments[i]
+          }
+          console.log(result)
+      }
+      fn(1,2,4);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

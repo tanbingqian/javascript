@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>qq验证码</title>
+    <style>
+    .tipsDiv{
+      display: none;
+    }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text">
+        <input type="button" value="验证"/>
+        <div class="tipsDiv">
+           <div class="arrow"></div>
+           <div class="text">请输入5-10位数字</div>
+        </div>
+    </div>
+    <script>
+
+      //1.给验证按钮添加点击事件
+      //2.根据文本框的值去显示对应的提示文字
+      //3.内容是否为空
+      //4.输入是否为数字，不是数字->isNaN();
+      //5.5-10位 text String.length 获取字符串的长度
+      //首字母不能为0，先获取首字母
+      //不能输入小数
+
+      var txt = document.querySelectorAll('input')[0];
+      var bnt =document.querySelectorAll('input')[1];
+      var tipsDiv =document.querySelector('.tipsDiv')
+      var text = document.querySelector('.text')
+
+     
+       
+        
+        bnt.onclick=function(){
+            tipsDiv.style.display='block'
+            //获取文本框值
+            var val = txt.value;
+            if(val == ''){
+              //为本为空
+              alert("文本为空")
+            }else if(isNaN(val)){
+              //输入内容是数字
+              text.innerHTML='请输入数字'
+            }else if(val.length<5 || val.length>10){
+              //5-10位
+              text.innerHTML='请输入5-10位数字'
+            }else if(val[0] == '0'){
+              //首字母不能为0
+              text.innerHTML='首字母不能为0'
+            }else if(val != String(parseInt(val))){
+              //输入框的值 是字符串
+              //输入的值： ‘123‘  -> parseInt('123.12') -> 123
+              //'123.12' != ‘123’ true
+              //‘123.12’ ！= 123 -> 123 != 123 false
+              // != 比较运算符 隐式转换
+              //解决方案： 左右都是字符串！ 它就不会转数据类型了！
+              //‘123.00 != '123' true
+              //不能输入小数
+              text.innerHTML='不能输入小数！'
+            }
+            else{
+              text.innerHTML='输入成功！'
+            }
+      }
+    </script>
+</body>
+</html>
